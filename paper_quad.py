@@ -2,9 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 import matplotlib.cm as cm
-import time
-import csv
-import pprint
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import colors
 
