@@ -56,8 +56,6 @@ if __name__ == '__main__':
             
         return y_pred, r
 
-
-    start = time.time()
     
 
     T_train = 1e2
@@ -80,7 +78,7 @@ if __name__ == '__main__':
 
     eta = 0.01
     rho = 0.01
-    beta_1 = 1e-6
+    beta = 1e-6
     seed = 0
     act_func = np.tanh
 
@@ -117,9 +115,8 @@ if __name__ == '__main__':
         
         X0 = X1
         
-    beta = beta_1 * train_len
-    Rt_R_ridge = Rt_R + beta * np.identity(N+int(N*(N+1)/2))
-    Wout_solve = np.linalg.solve(Rt_R_ridge, R_Yt)
+    Rt_R_ridge = Rt_R/train_len + beta * np.identity(N+int(N*(N+1)/2))
+    Wout_solve = np.linalg.solve(Rt_R_ridge, R_Yt/train_len)
     Wout = Wout_solve.T
 
     y_pred, r = predict(Win, W, Wout, X1, r)
